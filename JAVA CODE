@@ -1,0 +1,71 @@
+// AlumniConnect.java
+import java.util.*;
+
+class User {
+    String name, email, role;
+    User(String name, String email, String role){
+        this.name = name;
+        this.email = email;
+        this.role = role;
+    }
+}
+
+class Message {
+    String from, to, content;
+    Message(String from, String to, String content){
+        this.from = from;
+        this.to = to;
+        this.content = content;
+    }
+}
+
+public class AlumniConnect {
+    static List<User> users = new ArrayList<>();
+    static List<Message> messages = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Welcome to Alumni Connect Portal");
+
+        while (true) {
+            System.out.println("\n1. Register\n2. Send Message\n3. View Messages\n4. Exit");
+            int choice = sc.nextInt(); sc.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter name: ");
+                    String name = sc.nextLine();
+                    System.out.print("Enter email: ");
+                    String email = sc.nextLine();
+                    System.out.print("Enter role (student/alumni): ");
+                    String role = sc.nextLine();
+                    users.add(new User(name, email, role));
+                    System.out.println("Registration successful!");
+                    break;
+
+                case 2:
+                    System.out.print("From: ");
+                    String from = sc.nextLine();
+                    System.out.print("To: ");
+                    String to = sc.nextLine();
+                    System.out.print("Message: ");
+                    String msg = sc.nextLine();
+                    messages.add(new Message(from, to, msg));
+                    System.out.println("Message sent!");
+                    break;
+
+                case 3:
+                    System.out.println("All Messages:");
+                    for (Message m : messages) {
+                        System.out.println(m.from + " to " + m.to + ": " + m.content);
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Exiting...");
+                    return;
+            }
+        }
+    }
+}
